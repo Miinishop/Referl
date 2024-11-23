@@ -25,7 +25,7 @@
     }
 
     .logo {
-      margin-top: 80px; /* خفض الشعار بمقدار إضافي */
+      margin-top: 80px;
       margin-bottom: 20px;
     }
 
@@ -152,14 +152,59 @@
     .btn:hover {
       background: #5a6268;
     }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      padding: 20px;
+      background: #ffffff;
+      color: #333;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1001;
+    }
+
+    .popup p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .popup button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup button:hover {
+      background: #0056b3;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="news-bar">
     <div class="content">
-      <span><img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية">  الفائزة شيماء <img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"></span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"> الفائزة شيماء <img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"></span>
       <span><img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"> الفائزة مروى <img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"></span>
-      <span><img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية">  الفائزة أمال <img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"></span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"> الفائزة أمال <img src="https://cdn-icons-png.flaticon.com/512/1077/1077998.png" alt="هدية"></span>
     </div>
   </div>
 
@@ -176,8 +221,14 @@
       <button class="copy-btn" onclick="copyLink()">نسخ</button>
     </div>
 
-    <button class="btn" onclick="goBack()">العودة إلى الصفحة الرئيسية</button>
+    <button class="btn" onclick="goHome()">الذهاب إلى الصفحة الرئيسية</button>
   </div>
+
+  <div class="popup" id="popup">
+    <p>تم نسخ الرابط بنجاح!</p>
+    <button onclick="closePopup()">إغلاق</button>
+  </div>
+  <div class="overlay" id="overlay"></div>
 
   <script>
     function copyLink() {
@@ -185,11 +236,21 @@
       link.select();
       link.setSelectionRange(0, 99999);
       document.execCommand("copy");
-      alert('تم نسخ الرابط بنجاح!');
+      showPopup();
     }
 
-    function goBack() {
-      window.location.href = "https://miinishop.github.io/Referl/";
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function goHome() {
+      window.location.href = "https://miinishop.github.io/Home/";
     }
   </script>
 </body>
